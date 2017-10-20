@@ -47,13 +47,13 @@ public class Player extends GameObject {
 	public void render(Graphics graphics) 
 	{
 		graphics.setColor(Color.BLUE);
-		graphics.fillRect(xPosition, yPosition, 32, 48);
+		graphics.fillRect(xPosition, yPosition, 32, 32);
 	}
 
 	@Override
 	public Rectangle getBounds() 
 	{
-		return new Rectangle(xPosition, yPosition, 32, 48);
+		return new Rectangle(xPosition, yPosition, 32, 32);
 	}
 
 }
