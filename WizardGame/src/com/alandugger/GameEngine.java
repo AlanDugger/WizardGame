@@ -1,6 +1,7 @@
 package com.alandugger;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
@@ -16,7 +17,10 @@ public class GameEngine extends Canvas implements Runnable
 	{		
 		objectHandler = new ObjectHandler();
 		new Window(1000, 563, "Wizard Game", this);
-		start();	
+		start();
+		objectHandler.addObject(new Player(100, 100, ObjectID.Player, objectHandler));
+		this.addKeyListener(new GameInput(objectHandler));
+		
 	}
 	
 	public static void main(String[] args) 
@@ -66,6 +70,7 @@ public class GameEngine extends Canvas implements Runnable
 		objectHandler.tick();
 	}
 	
+	// Render the game space and objects
 	public void render()
 	{
 		BufferStrategy bufferStrat = this.getBufferStrategy();
@@ -77,8 +82,11 @@ public class GameEngine extends Canvas implements Runnable
 		
 		Graphics graphics = bufferStrat.getDrawGraphics();
 		
+		graphics.setColor(Color.BLACK);
+		graphics.fillRect(0, 0, 1000, 563);
 		
 		objectHandler.render(graphics);
+		
 		graphics.dispose();
 		bufferStrat.show();
 	}
